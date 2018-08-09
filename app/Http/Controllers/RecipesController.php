@@ -12,9 +12,7 @@ class RecipesController extends Controller
      */
     function index()
     {
-      // return response()->json(['juan','pedri']);
       return response()->json(Recipe::all());
     }
 
-    //
 }
