@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('UserTableSeeder');
+      DB::table('categories')->insert([
+          [ 'name' => 'The Unforgettables'],
+          [ 'name' => 'Contemporary Classics'],
+          [ 'name' => 'New Era Drinks']
+
+       ]);
     }
 }
