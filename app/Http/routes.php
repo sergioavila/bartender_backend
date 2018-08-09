@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Recipe;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,8 +13,7 @@
 
 $app->get('/', function () use ($app) {
     // return $app->version();
-    return 'hola';
 });
 
-//All Recipes 
+//All Recipes
 $app->get('/recipes', ['uses' => 'RecipesController@index']);
