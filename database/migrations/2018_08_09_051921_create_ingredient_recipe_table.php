@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecipeIngredientsTable extends Migration
+class CreateIngredientRecipeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class CreateRecipeIngredientsTable extends Migration
      */
     public function up()
     {
-      Schema::create('recipe_ingredients', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('ingredient_id');
-          $table->string('recipe_id');
+      Schema::create('ingredient_recipe', function (Blueprint $table) {
+          $table->unsignedInteger('recipe_id');
+          $table->unsignedInteger('ingredient_id');
       });
     }
 
@@ -26,6 +25,6 @@ class CreateRecipeIngredientsTable extends Migration
      */
     public function down()
     {
-      Schema::drop('recipe_ingredients');
+        //
     }
 }

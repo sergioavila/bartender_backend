@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Image extends Model
 {
   protected $guarded = ['id'];
-  public function recipes() {
-    return $this->hasMany('App\Models\Recipe');
+  public function recipe() {
+    return $this->hasOne('App\Models\Recipe');
   }
 }

@@ -11,7 +11,6 @@ class FavoritesController extends Controller
     {
       $favorites = Favorite::where('user_id', $userId)->pluck('recipe_id');
       $recipes = Recipe::whereIn('id', $favorites)->get();
-
       return response()->json($recipes);
     }
 
