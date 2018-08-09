@@ -2,6 +2,8 @@
 
 Made with Lumen PHP Framework
 
+![bartender logo](https://sergio-avila.com/bartenderapp/logo-bartender.png)
+
 ## Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
