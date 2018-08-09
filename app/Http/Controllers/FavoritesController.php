@@ -6,14 +6,9 @@ use App\Models\Recipe;
 
 class FavoritesController extends Controller
 {
-    /**
-     * Create Favorite controller instance.
-     *
-     * @return void
-     */
-    function index()
+    //Get user favorites
+    function index($userId = 1)
     {
-      $userId = 1;
       $favorites = Favorite::where('user_id', $userId)->pluck('recipe_id');
       $recipes = Recipe::whereIn('id', $favorites)->get();
 
