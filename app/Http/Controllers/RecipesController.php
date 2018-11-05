@@ -18,7 +18,7 @@ class RecipesController extends Controller
       foreach ($recipes as $recipe) {
         $image = Image::select('url')->where('id', $recipe['image_id'])->first();
         $category = Category::select('name')->where('id', $recipe['category_id'])->first();
-        $full_recipes[] = ['name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
+        $full_recipes[] = ['id'=>$recipe->id, 'name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
       }
 
       return response()->json($full_recipes);
@@ -27,12 +27,12 @@ class RecipesController extends Controller
     //Single recipe
     function single($id)
     {
-      $recipe = Recipe::select('name','description','category_id','image_id')->where('id', $id)->first();
+      $recipe = Recipe::select('id','name','description','steps','category_id','image_id')->where('id', $id)->first();
       $ingredients = Recipe::find($id)->ingredients->pluck('name');
       $category = Category::select('name')->where('id', $recipe['category_id'])->first();
       $image = Image::select('url')->where('id', $recipe['image_id'])->first();
 
-      $full_recipe = collect(['name'=>$recipe->name, 'description'=>$recipe->description,['ingredients'=>$ingredients],'image'=>$image->url,'category'=>$category->name]);
+      $full_recipe = collect(['id'=>$recipe->id, 'name'=>$recipe->name, 'description'=>$recipe->description,'steps'=>$recipe->steps,'ingredients'=>$ingredients,'image'=>$image->url,'category'=>$category->name]);
 
       return response()->json($full_recipe);
     }
@@ -46,7 +46,7 @@ class RecipesController extends Controller
       foreach ($recipes as $recipe) {
         $image = Image::select('url')->where('id', $recipe['image_id'])->first();
         $category = Category::select('name')->where('id', $recipe['category_id'])->first();
-        $full_recipes[] = ['name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
+        $full_recipes[] = ['id'=>$recipe->id, 'name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
       }
       return response()->json($full_recipes);
     }
