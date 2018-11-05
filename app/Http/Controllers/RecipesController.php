@@ -14,13 +14,16 @@ class RecipesController extends Controller
     {
       $recipes = Recipe::with('ingredients')->get();
       $full_recipes = [];
+
       foreach ($recipes as $recipe) {
         $image = Image::select('url')->where('id', $recipe['image_id'])->first();
         $category = Category::select('name')->where('id', $recipe['category_id'])->first();
         $full_recipes[] = ['name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
       }
+
       return response()->json($full_recipes);
     }
+
     //Single recipe
     function single($id)
     {
@@ -33,12 +36,19 @@ class RecipesController extends Controller
 
       return response()->json($full_recipe);
     }
-    //Search recipe
-    function search($terms = 'amer')
-    {
-      $recipe = Recipe::where('name', 'LIKE' ,'%'.$terms.'%')->get();
 
-      return response()->json($recipe);
+    //Search recipe
+    function search($terms = null)
+    {
+      $recipes = Recipe::where('name', 'LIKE' ,'%'.$terms.'%')->orWhere('description', 'LIKE' ,'%'.$terms.'%')->get();
+      $full_recipes = [];
+
+      foreach ($recipes as $recipe) {
+        $image = Image::select('url')->where('id', $recipe['image_id'])->first();
+        $category = Category::select('name')->where('id', $recipe['category_id'])->first();
+        $full_recipes[] = ['name'=>$recipe->name, 'description'=>$recipe->description,'image'=>$image->url,'category'=>$category->name];
+      }
+      return response()->json($full_recipes);
     }
 
 }

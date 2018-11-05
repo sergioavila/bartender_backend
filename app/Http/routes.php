@@ -13,7 +13,7 @@ $app->get('/recipes', ['uses' => 'RecipesController@index']);
 $app->get('/recipe/{id}', ['uses' => 'RecipesController@single']);
 
 //Search Recipe
-$app->get('/search', ['uses' => 'RecipesController@search']);
+$app->get('/search/{terms}', ['uses' => 'RecipesController@search']);
 
 //All Categories
 $app->get('/categories', ['uses' => 'CategoriesController@index']);
